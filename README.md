@@ -9,7 +9,7 @@ inspired and motivated by `buildspace` `nights n weeks` `s5`
 ## week2 
 ### 28.June.24
 
-i am still trying to figure out how to create my toy. \n
+i am still trying to figure out how to create my toy. <br>
 challenges facing : 
 1. python text to speech library error
 2. system crash

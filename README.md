@@ -22,5 +22,5 @@ resources that i am using :
 2. <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/?resellerType=education&variant=raspberry-pi-4-model-b-8gb">raspberrypi.com</a>
 
 exploring : 
-1. tiny ml
+1. tiny ml - <a href="https://www.datacamp.com/blog/what-is-tinyml-tiny-machine-learning">data camp</a>
 2. raspberrypi 4 b

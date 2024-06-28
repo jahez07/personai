@@ -23,3 +23,4 @@ resources that i am using :
 
 exploring : 
 1. tiny ml
+2. raspberrypi 4 b

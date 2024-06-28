@@ -20,3 +20,6 @@ currently i am looking into how i can make use of raspberry pi and a camera to s
 resources that i am using : 
 1. <a href="https://www.youtube.com/watch?v=qRFR0_FvkSs&ab_channel=DataSlayer">data slayer channel</a>
 2. <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/?resellerType=education&variant=raspberry-pi-4-model-b-8gb">raspberrypi.com</a>
+
+exploring : 
+1. tiny ml

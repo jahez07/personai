@@ -15,3 +15,8 @@ challenges facing :
 2. system crash
 3. planning to buy a raspberry pi 4b 
 
+currently i am looking into how i can make use of raspberry pi and a camera to start with my toy. <br>
+
+resources that i am using : 
+1. <a href="https://www.youtube.com/watch?v=qRFR0_FvkSs&ab_channel=DataSlayer">data slayer channel</a>
+2. <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/?resellerType=education&variant=raspberry-pi-4-model-b-8gb">raspberrypi.com</a>

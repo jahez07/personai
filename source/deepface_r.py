@@ -7,3 +7,4 @@ from deepface import DeepFace
 import pyttsx3
 # to plot the image
 import matplotlib.pyplot as plt
+

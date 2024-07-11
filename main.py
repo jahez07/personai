@@ -57,14 +57,30 @@ You should use words with care.'''
 response = model.generate_content(input_)
 text = response._result.candidates[0].content.parts[0].text
 
+
+# to allow the system to recognise the audio
+r = sr.Recognizer()
+source = sr.Microphone()
+
 # to convert audio to text
 def wav_to_text(audio_path):
     segments, _ = whisper_model.transcribe(audio_path)
     text_ = ''.join(segment.text for segment in segments)
     return text_
 
-# to allow the system to recognise the audio
-r = sr.Recognizer()
+# wake word
+def listen_for_wake_word(audio):
+    return None
+
+def prompt_gpt(audio):
+    return None
+
+def callback(recognizer, audio):
+    return None
+
+def start_listening():
+    with source as s:
+        r.adjust_for_ambient_noise(s, duration=2)
 
 # generate the audio of the text passed
 def audio_gen(text):

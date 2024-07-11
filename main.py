@@ -1,3 +1,5 @@
+# pip3 install SpeechRecognition
+import speech_recognition as sr
 import google.generativeai as genai 
 from elevenlabs import play
 # pip3 install -U elevenlabs

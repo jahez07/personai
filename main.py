@@ -57,7 +57,9 @@ text = response._result.candidates[0].content.parts[0].text
 
 def wav_to_text(audio_path):
     segments, _ = whisper_model.transcribe(audio_path)
-    text = ''.join(segment.text for segment in segments)
+    text_ = ''.join(segment.text for segment in segments)
+    return text_
+
 
 audio = client.generate(
   text=text,

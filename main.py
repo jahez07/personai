@@ -5,22 +5,24 @@ from elevenlabs.client import ElevenLabs
 # pip3 install faster-whisper
 from faster_whisper import WhisperModel
 import pyaudio
+import os
 
 whisper_size = 'tiny'
+num_cores = os.cpu_count()
 whisper_model = WhisperModel(
     whisper_size,
     device= 'cpu',
     compute_type= 'int_8',
     cpu_threads= 1,
-    
+    num_workers=1
 )
 
 
 client = ElevenLabs(
-  api_key="YOUR_ELEVAN_API_KEY", # Defaults to ELEVEN_API_KEY
+  api_key="sk_075b6cf0e67280bbe3911ec1def5090c60f41c298fc180fa", # Defaults to ELEVEN_API_KEY
 )
 
-GOOGLE_API_KEY = "YOUR_GEMINI_API_KEY"
+GOOGLE_API_KEY = "AIzaSyAlrAFt3wYkTaSj2eOYs0NbiAN12FwXrPk"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # configuring the gemini model

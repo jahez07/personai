@@ -110,6 +110,10 @@ def prompt_gpt(audio):
             audio = audio_gen(text)
             play(audio)
 
+            print('\nSay', wake_word, 'to wake me up.\n')
+            listening_for_wake_word = True
+    except Exception as e:
+        print('Prompt error: ', e)
 
 def callback(recognizer, audio):
     return None

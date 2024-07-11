@@ -9,6 +9,9 @@ from faster_whisper import WhisperModel
 import pyaudio
 import os
 
+wake_word = 'personai'
+listening_for_wake_word = True
+
 whisper_size = 'tiny'
 num_cores = os.cpu_count()
 whisper_model = WhisperModel(
@@ -70,7 +73,13 @@ def wav_to_text(audio_path):
 
 # wake word
 def listen_for_wake_word(audio):
-    return None
+    global listening_for_wake_word
+
+    wake_audio_path = 'wake_detect.wav'
+    with open(wake_audio_path, 'wb') as f:
+        f.write(audio.get_wav_data())
+
+    text_input = wav_to_text(wake_audio_path)
 
 def prompt_gpt(audio):
     return None

@@ -92,7 +92,24 @@ def prompt_gpt(audio):
         with open(prompt_audio_path, 'wb') as f:
             f.write(audio.get_wav_data())
         
+        # converting the audio(prompt) from user to 
         prompt_text = wav_to_text(prompt_audio_path)
+
+        # checking if the prompt is empty
+        if len(prompt_text.strip()) == 0:
+            text = "sorry, could not get you!"
+            audio = audio_gen(text)
+            play(audio)
+            listening_for_wake_word = True
+        else:
+            print('User' + prompt_text)
+            response = model.generate_content(input_)
+            text = response._result.candidates[0].content.parts[0].text
+
+            print('Personai: ', text)
+            audio = audio_gen(text)
+            play(audio)
+
 
 def callback(recognizer, audio):
     return None

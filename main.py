@@ -20,7 +20,7 @@ client = ElevenLabs(
   api_key="YOUR_ELEVAN_API_KEY", # Defaults to ELEVEN_API_KEY
 )
 
-GOOGLE_API_KEY = "AIzaSyAlrAFt3wYkTaSj2eOYs0NbiAN12FwXrPk"
+GOOGLE_API_KEY = "YOUR_GEMINI_API_KEY"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # configuring the gemini model

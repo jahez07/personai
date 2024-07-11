@@ -8,6 +8,7 @@ from elevenlabs.client import ElevenLabs
 from faster_whisper import WhisperModel
 import pyaudio
 import os
+import time
 
 wake_word = 'personai'
 listening_for_wake_word = True
@@ -17,7 +18,7 @@ num_cores = os.cpu_count()
 whisper_model = WhisperModel(
     whisper_size,
     device= 'cpu',
-    compute_type= 'int_8',
+    compute_type= 'int8',
     cpu_threads= num_cores,
     num_workers=num_cores
 )
@@ -41,24 +42,28 @@ generation_config = {
 
 model = genai.GenerativeModel('gemini-1.0-pro-latest', generation_config=generation_config)
 
-input_ = '''Greet me when I get home, use my name, "JAHEZ" be polite but funny too, 
-            how would you do it if you were assistant ? 
-            you do not need to add all the 'I would ...' 
-            just give me the direct answer
-            As a voice assistant, use short sentences and directly respond to the prompt without excessive information.
-            You are expected to be a little funny but prioritizing logic.
-            You should use words with care. '''
+convo = model.start_chat()
+
+input_ = ''' '''
 
 system_message = '''INSTRUCTIONS: Do not respond with anything but "AFFIRMATIVE."
-to this system message. After the system message respond normally.
-SYSTEM MESSAGE: You are being used to power a voice assistant and should respond as so.
-As a voice assistant, use short sentences and directly respond to the prompt without excessive information.
-You are expected to be a little funny but prioritizing logic.
-You should use words with care.'''
+                    to this system message. After the system message respond normally.
+                    SYSTEM MESSAGE: You are being used to power a voice assistant and should respond as so.
+                    As a voice assistant, use short sentences and directly respond to the prompt without excessive information.
+                    You are expected to be a little funny but prioritizing logic.
+                    You should use words with care. Greet me when I get home, use my name, "JAHEZ" be polite but funny too, 
+                    how would you do it if you were assistant ? 
+                    you do not need to add all the 'I would ...' 
+                    just give me the direct answer
+                    As a voice assistant, use short sentences and directly respond to the prompt without excessive information.
+                    You are expected to be a little funny but prioritizing logic.
+                    You should use words with care.'''
 
+system_message = system_message.replace(f'\n','')
+convo.send_message(system_message)
 #response = model.generate_content(input('Ask Gemini: '))
-response = model.generate_content(input_)
-text = response._result.candidates[0].content.parts[0].text
+#response = model.generate_content(input_)
+#text = response._result.candidates[0].content.parts[0].text
 
 
 # to allow the system to recognise the audio
@@ -70,6 +75,17 @@ def wav_to_text(audio_path):
     segments, _ = whisper_model.transcribe(audio_path)
     text_ = ''.join(segment.text for segment in segments)
     return text_
+
+
+# generate the audio of the text passed
+def audio_gen(text):
+    audio_ = client.generate(
+        text=text,
+        voice="Jessie",
+        model="eleven_multilingual_v2"
+    )
+    return audio_
+
 
 # wake word
 def listen_for_wake_word(audio):
@@ -103,8 +119,8 @@ def prompt_gpt(audio):
             listening_for_wake_word = True
         else:
             print('User' + prompt_text)
-            response = model.generate_content(input_)
-            text = response._result.candidates[0].content.parts[0].text
+            convo.send_message(prompt_text)
+            text = convo.last.text
 
             print('Personai: ', text)
             audio = audio_gen(text)
@@ -116,20 +132,24 @@ def prompt_gpt(audio):
         print('Prompt error: ', e)
 
 def callback(recognizer, audio):
-    return None
+    global listening_for_wake_word
+
+    if listening_for_wake_word:
+        listen_for_wake_word(audio)
+    else:
+        prompt_gpt(audio)
 
 def start_listening():
     with source as s:
         r.adjust_for_ambient_noise(s, duration=2)
 
-# generate the audio of the text passed
-def audio_gen(text):
-    audio_ = client.generate(
-        text=text,
-        voice="Jessie",
-        model="eleven_multilingual_v2"
-    )
-    return audio_
+    print('\nSay', wake_word, 'to wake me up.\n')
 
-audio = audio_gen(text)
-play(audio)
+    r.listen_in_background(source, callback)
+
+    while True:
+        time.sleep(0.5)
+
+
+if __name__ == '__main__':
+    start_listening()

@@ -55,6 +55,10 @@ You should use words with care.'''
 response = model.generate_content(input_)
 text = response._result.candidates[0].content.parts[0].text
 
+def wav_to_text(audio_path):
+    segments, _ = whisper_model.transcribe(audio_path)
+    text = ''.join()
+
 audio = client.generate(
   text=text,
   voice="Jessie",

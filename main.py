@@ -57,15 +57,23 @@ You should use words with care.'''
 response = model.generate_content(input_)
 text = response._result.candidates[0].content.parts[0].text
 
+# to convert audio to text
 def wav_to_text(audio_path):
     segments, _ = whisper_model.transcribe(audio_path)
     text_ = ''.join(segment.text for segment in segments)
     return text_
 
+# to allow the system to recognise the audio
+r = sr.Recognizer()
 
-audio = client.generate(
-  text=text,
-  voice="Jessie",
-  model="eleven_multilingual_v2"
-)
+# generate the audio of the text passed
+def audio_gen(text):
+    audio_ = client.generate(
+        text=text,
+        voice="Jessie",
+        model="eleven_multilingual_v2"
+    )
+    return audio_
+
+audio = audio_gen(text)
 play(audio)

@@ -13,8 +13,8 @@ whisper_model = WhisperModel(
     whisper_size,
     device= 'cpu',
     compute_type= 'int_8',
-    cpu_threads= 1,
-    num_workers=1
+    cpu_threads= num_cores,
+    num_workers=num_cores
 )
 
 

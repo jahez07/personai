@@ -17,7 +17,7 @@ whisper_model = WhisperModel(
 
 
 client = ElevenLabs(
-  api_key="sk_075b6cf0e67280bbe3911ec1def5090c60f41c298fc180fa", # Defaults to ELEVEN_API_KEY
+  api_key="YOUR_ELEVAN_API_KEY", # Defaults to ELEVEN_API_KEY
 )
 
 GOOGLE_API_KEY = "AIzaSyAlrAFt3wYkTaSj2eOYs0NbiAN12FwXrPk"

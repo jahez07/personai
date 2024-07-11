@@ -80,9 +80,19 @@ def listen_for_wake_word(audio):
         f.write(audio.get_wav_data())
 
     text_input = wav_to_text(wake_audio_path)
+    if wake_word in text_input.lower().strip():
+        print('Wake word detected. Please speak your prompt to Personai')
+        listening_for_wake_word = False
 
 def prompt_gpt(audio):
-    return None
+    global listening_for_wake_word
+
+    try:
+        prompt_audio_path = 'prompt.wav'
+        with open(prompt_audio_path, 'wb') as f:
+            f.write(audio.get_wav_data())
+        
+        prompt_text = wav_to_text(prompt_audio_path)
 
 def callback(recognizer, audio):
     return None

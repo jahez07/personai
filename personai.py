@@ -122,3 +122,13 @@ def talk():
     #    f.write(prompt_audio.get_wav_data())
     #prompt_text = wav_to_text(prompt_audio_path)
     return prompt_text
+
+
+keyword = "bye"
+input_ = input_
+while True:
+    gemini(input_)
+    input_ = talk()
+    if keyword in input_.lower():
+        gemini(input_)
+        break

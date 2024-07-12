@@ -25,3 +25,15 @@ whisper_model = WhisperModel(
 client = ElevenLabs(
   api_key="sk_075b6cf0e67280bbe3911ec1def5090c60f41c298fc180fa", # Defaults to ELEVEN_API_KEY
 )
+
+GOOGLE_API_KEY = "AIzaSyAlrAFt3wYkTaSj2eOYs0NbiAN12FwXrPk"
+genai.configure(api_key=GOOGLE_API_KEY)
+
+# configuring the gemini model
+
+generation_config = {
+    "temperature": 0.7,
+    "top_p": 1,
+    "top_k": 1,
+    "max_output_tokens":2048,
+}

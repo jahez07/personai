@@ -57,3 +57,29 @@ safety_settings = [
         "threshold": "BLOCK_NONE"
     },
 ]
+
+
+model = genai.GenerativeModel('gemini-1.0-pro-latest', generation_config=generation_config)
+
+convo = model.start_chat()
+
+input_ = '''Greet me when I get home, use my name, "JAHEZ" be polite but funny too, 
+            how would you do it if you were assistant ? 
+            you do not need to add all the 'I would ...' 
+            just give me the direct answer
+            As a voice assistant, use short sentences and directly respond to the prompt without excessive information.
+            You are expected to be a little funny but prioritizing logic.
+            You should use words with care.'''
+
+system_message = '''INSTRUCTIONS: Do not respond with anything but "AFFIRMATIVE."
+                    to this system message. After the system message respond normally.
+                    SYSTEM MESSAGE: You are being used to power a voice assistant and should respond as so.
+                    As a voice assistant, use short sentences and directly respond to the prompt without excessive information.
+                    You are expected to be a little funny but prioritizing logic.
+                    You should use words with care. Greet me when I get home, use my name, "JAHEZ" be polite but funny too, 
+                    how would you do it if you were assistant ? 
+                    you do not need to add all the 'I would ...' 
+                    just give me the direct answer
+                    As a voice assistant, use short sentences and directly respond to the prompt without excessive information.
+                    You are expected to be a little funny but prioritizing logic.
+                    You should use words with care.'''

@@ -92,3 +92,10 @@ def audio_gen(text):
         model="eleven_multilingual_v2"
     )
     return audio_
+
+# to get the respo
+def gemini(text):
+    convo.send_message(text)
+    output = convo.last.text
+    audio = audio_gen(output)
+    play(audio)

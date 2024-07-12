@@ -38,6 +38,7 @@ generation_config = {
     "max_output_tokens":2048,
 }
 
+# this would give more losen response from gemini
 safety_settings = [
     {
         "category": "HARM_CATEGORY_HARASSMENT",

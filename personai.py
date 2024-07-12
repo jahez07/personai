@@ -103,3 +103,9 @@ def gemini(text):
 # for speech recognition
 r = sr.Recognizer()
 source = sr.Microphone()
+
+# to convert audio to text 
+def wav_to_text(audio_path):
+    segments, _ = whisper_model.transcribe(audio_path)
+    text_ = ''.join(segment.text for segment in segments)
+    return text_

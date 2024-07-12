@@ -99,3 +99,7 @@ def gemini(text):
     output = convo.last.text
     audio = audio_gen(output)
     play(audio)
+
+# for speech recognition
+r = sr.Recognizer()
+source = sr.Microphone()

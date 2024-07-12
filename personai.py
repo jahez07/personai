@@ -9,3 +9,14 @@ from elevenlabs.client import ElevenLabs
 from faster_whisper import WhisperModel
 import pyaudio
 import time
+
+# for transcribing the audio to text
+whisper_size = 'tiny'
+num_cores = os.cpu_count()
+whisper_model = WhisperModel(
+    whisper_size,
+    device= 'cpu',
+    compute_type= 'int8',
+    cpu_threads= num_cores,
+    num_workers=num_cores
+)

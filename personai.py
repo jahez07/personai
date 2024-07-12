@@ -20,3 +20,8 @@ whisper_model = WhisperModel(
     cpu_threads= num_cores,
     num_workers=num_cores
 )
+
+# elevanlabs 
+client = ElevenLabs(
+  api_key="sk_075b6cf0e67280bbe3911ec1def5090c60f41c298fc180fa", # Defaults to ELEVEN_API_KEY
+)

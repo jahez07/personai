@@ -110,7 +110,7 @@ def wav_to_text(audio_path):
     text_ = ''.join(segment.text for segment in segments)
     return text_
 
-
+# to recieve audio from user and returns text
 def talk():
     with source as s:
         print("User: ")

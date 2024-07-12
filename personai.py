@@ -83,3 +83,12 @@ system_message = '''INSTRUCTIONS: Do not respond with anything but "AFFIRMATIVE.
                     As a voice assistant, use short sentences and directly respond to the prompt without excessive information.
                     You are expected to be a little funny but prioritizing logic.
                     You should use words with care.'''
+
+# generate the audio of the text passed
+def audio_gen(text):
+    audio_ = client.generate(
+        text=text,
+        voice="Jessie",
+        model="eleven_multilingual_v2"
+    )
+    return audio_

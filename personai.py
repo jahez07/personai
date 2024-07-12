@@ -123,7 +123,7 @@ def talk():
     #prompt_text = wav_to_text(prompt_audio_path)
     return prompt_text
 
-
+# loop for conversation with personai
 keyword = "bye"
 input_ = input_
 while True:

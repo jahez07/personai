@@ -93,7 +93,7 @@ def audio_gen(text):
     )
     return audio_
 
-# to get the respo
+# to get the response 
 def gemini(text):
     convo.send_message(text)
     output = convo.last.text

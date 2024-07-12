@@ -109,3 +109,16 @@ def wav_to_text(audio_path):
     segments, _ = whisper_model.transcribe(audio_path)
     text_ = ''.join(segment.text for segment in segments)
     return text_
+
+
+def talk():
+    with source as s:
+        print("User: ")
+        prompt_audio = r.listen(s)
+    prompt_text = r.recognize_google(prompt_audio)
+    #return prompt_text
+    #prompt_audio_path = 'prompt.wav'
+    #with open(prompt_audio_path, 'wb') as f:
+    #    f.write(prompt_audio.get_wav_data())
+    #prompt_text = wav_to_text(prompt_audio_path)
+    return prompt_text
